@@ -1,5 +1,5 @@
-const LocalStrategy = require('passport-local'),
-    passport = require('passport');
+const LocalStrategy = require('passport-local/lib'),
+    passport = require('passport/lib');
 
 passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',

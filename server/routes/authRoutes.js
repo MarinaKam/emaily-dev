@@ -1,9 +1,9 @@
 const express = require('express'),
     router = express.Router();
 
-const passportFacebook = require('../auth/facebook');
-const passportGoogle = require('../auth/google');
-const passportLocal = require('../auth/local');
+const passportFacebook = require('../services/facebook');
+const passportGoogle = require('../services/google');
+const passportLocal = require('../services/local');
 
 //LogIn router
 router.get('/login', (req, res) => {

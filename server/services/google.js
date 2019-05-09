@@ -1,5 +1,5 @@
-const passport = require('passport'),
-    GoogleStrategy = require('passport-google-oauth20');
+const passport = require('passport/lib'),
+    GoogleStrategy = require('passport-google-oauth20/lib');
 const key = require('../config/keys');
 const User = require('../models/user');
 

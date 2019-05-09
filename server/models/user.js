@@ -1,10 +1,12 @@
 const mongoose = require('mongoose'),
     { Schema } = mongoose,
     bcrypt = require('bcrypt'),
+    key = require('../config/keys'),
     passportLocalMongoose = require('passport-local-mongoose');
 
 //db
-const url = process.env.DATABASEURL || 'mongodb://localhost/emaily-dev';
+const url = process.env.DATABASEURL || key.mongoURI;
+
 mongoose.set('debug', true);
 mongoose.Promise = global.Promise;
 mongoose.connect(url)
@@ -31,8 +33,8 @@ const UserSchema = new Schema({
 });
 
 UserSchema.plugin(passportLocalMongoose);
-UserSchema.methods.generateHash = password => bcrypt.hashSync(password, bcrypt.genSaltSync(9));
-UserSchema.methods.validPassword = password => bcrypt.compareSync(password, this.local.password);
+// UserSchema.methods.generateHash = password => bcrypt.hashSync(password, bcrypt.genSaltSync(9));
+// UserSchema.methods.validPassword = password => bcrypt.compareSync(password, this.local.password);
 // UserSchema.statics.findOrCreate = require('find-or-create');
 
 module.exports = mongoose.model('User', UserSchema);

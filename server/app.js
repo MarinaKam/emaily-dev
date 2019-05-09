@@ -6,11 +6,11 @@ const express          = require('express'),
 
 // const indexRouter = require('./routes/index');
 // const usersRouter = require('./routes/users');
-const authRouter = require('./routes/auth');
+const authRoutes = require('./routes/authRoutes');
 
 // const User = require('./models/user');
 
-const authApi = require('./config/keys');
+const key = require('./config/keys');
 
 const app = express();
 const port = process.env.PORT|| 5000;
@@ -19,7 +19,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/auth', authRouter);
+app.use('/auth', authRoutes);
 
 
 // app.use('/', indexRouter);
@@ -27,7 +27,7 @@ app.use('/auth', authRouter);
 
 //passport set up
 app.use(session({
-    secret: authApi.cookieSecret,
+    secret: key.cookieSecret,
     resave: false,
     saveUninitialized: false
 }));
